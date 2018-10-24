@@ -1,6 +1,6 @@
-# mytaxi backend applicant test
+mytaxi backend Applicant Test Service
 
-## Task Description
+# Task Description
 You should be able to start the example application by executing com.mytaxi.MytaxiServerApplicantTestApplication, which starts a webserver on port 8080 (http://localhost:8080) and serves SwaggerUI where can inspect and try existing endpoints.
 
 The project is based on a small web service which uses the following technologies:
@@ -25,9 +25,6 @@ You should be aware of the following conventions while you are working on this e
 
 You should commit into your local git repository and include the commit history into the final result.
 
----
-
-
 ## Task 1
  * Write a new Controller for maintaining cars (CRUD).
    * Decide on your own how the methods should look like.
@@ -38,37 +35,36 @@ You should commit into your local git repository and include the commit history 
  * Extend the DriverDo to map the selected car to the driver.
  * Add example data to resources/data.sql
 
----
-
+## Notes on Task 1
+    * Entity Manufacturer considered as a string column in car table
+    * Car and Driver relation considered as one to one due to no further requirement definition:
+        * to store the log or trace of car and driver history it is recommended to have a new entity like CarDriverHitory whith car and driver and fromDate and thruDate as properties
+        this relation is OneToMany from car to carDriverHistory and ManyToOne from CarDriverHistory to Car(or OneToMany from car to carDriverHistory)
+        * there is no property name selected (and it is intentionally) in CarDO and selected car distinguished by relation to driver. In CarDTO we have a field for client to find easier if car is selected or not
 
 ## Task 2
 First come first serve: A car can be selected by exactly one ONLINE Driver. If a second driver tries to select a already used car you should throw a CarAlreadyInUseException.
 
----
-
+## Notes on Task 2
+    * First comes first served is supported by @Transactional
+    * there is no access method to unselect car from car controller but it happens with driver controller to prevent business non managed manipulation
 
 ## Task 3
-Imagine a driver management frontend that is used internally by mytaxi employees to create and edit driver related data. For a new search functionality, we need an endpoint to search for drivers. It should be possible to search for drivers by their attributes (username, online_status) as well as car characteristics (license plate, rating, etc).
+Make use of the filter pattern to implement an endpoint in the DriverController to get a list of drivers with specific characteristics. Reuse the characteristics you implemented in task 1.
 
-* implement a new endpoint for searching or extend an existing one
-* driver/car attributes as input parameters
-* return list of drivers
+## Notes on Task 3
+    * From Task one and specification it seems cars need to be filtered due to characteristics to be selected by driver. So this feature is added to CarController to filter cars
+    * 3 sample criteria added for POC, obviously it can be extended with more options
+    *** Task 3 updated by adding filter to Driver as well to follow the requirement
 
----
+## Task 4
+Security: secure the API. It's up to you how you are going to implement the security.
 
+## Notes on Task 4
+    * Basic security is considered for this task. oAuth2 seems a better choice of course regarding limited time considered for this assignment (4h)
+     and also amount of time spent for other tasks which already exceeded (4h) the easiest solution considered
+    ** In order to login please enter  username/password as john123/password and make the get request again and you can see the results.
 
-## Task 4 (optional)
-This task is _voluntarily_, if you can't get enough of hacking tech challenges, implement security.
-Secure the API so that authentication is needed to access it. The details are up to you.
+NOTE:
+Please make sure to not submit any personal data with your tests result. Personal data is for example your name, your birth date, email address etc.
 
-Please include instructions how to authenticate/login, so that we can test the endpoints you implemented!
-
----
-
-
-Good luck!
-❤️ mytaxi
-
-
-
-_NOTE: Please make sure to not submit any personal data with your tests result. Personal data is for example your name, your birth date, email address etc._
