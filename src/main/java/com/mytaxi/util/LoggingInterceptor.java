@@ -13,7 +13,7 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter
 
 
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception
     {
         StringBuilder logMessage = new StringBuilder();
         logMessage.append("method: ").append(request.getMethod()).append("\t");
@@ -29,6 +29,7 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter
         {
             LoggingInterceptor.LOG.info(logMessage.toString());
         }
+
     }
 
 }

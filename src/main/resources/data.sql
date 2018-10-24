@@ -2,6 +2,16 @@
  * CREATE Script for init of DB
  */
 
+-- Create cars
+insert into car(id,  ENGINE_TYPE, LICENSE_PLATE, MANUFACTURER, RATING, SEAT_COUNT, CONVERTIBLE) values (1, 'Unknown', 'aaa111', 'FORD', 4, 4, false);
+insert into car(id,  ENGINE_TYPE, LICENSE_PLATE, MANUFACTURER, RATING, SEAT_COUNT, CONVERTIBLE) values (2,'Gas', 'aaa222', 'BMW', 5, 4, true);
+insert into car(id,  ENGINE_TYPE, LICENSE_PLATE, MANUFACTURER, RATING, SEAT_COUNT, CONVERTIBLE) values (3, 'Unknown', 'aaa333', 'TOYOTA', 5, 4, false);
+
+-- Create Users
+--INSERT INTO app_user (id, first_name, last_name, password, username) VALUES (1, 'John', 'Doe', '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'john.doe');
+--INSERT INTO app_user (id, first_name, last_name, password, username) VALUES (2, 'Admin', 'Admin', '821f498d827d4edad2ed0960408a98edceb661d9f34287ceda2962417881231a', 'admin.admin');
+
+
 -- Create 3 OFFLINE drivers
 
 insert into driver (id, date_created, deleted, online_status, password, username) values (1, now(), false, 'OFFLINE',
